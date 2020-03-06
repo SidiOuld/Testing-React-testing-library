@@ -12,7 +12,7 @@ test("addPoints adds 1 point to score", () => {
   expect(addPoints(1)).toBe(2);
 });
 
-test("App contains a home touchdown button", () => {
+test("App contains a strike button", () => {
   // arrage
   const { getByTestId } = render(<App />);
   //act
