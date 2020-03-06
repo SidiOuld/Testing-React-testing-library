@@ -48,20 +48,32 @@ const Buttonontainer = styled.div`
   }
 `;
 
+export const addPoints = currentScore => {
+  return currentScore + 1;
+};
+
+export const resetScore = (resetBalls, resetStrikes) => {
+  return `resetBalls resetStrikes`;
+};
+
+let strikesCounts;
+let setStrikesCounts;
+
+export const faul = (strikesCounts, setStrikesCounts) => {
+  if (strikesCounts <= 1) {
+    setStrikesCounts(strikesCounts + 1);
+  }
+};
+
 function Display() {
   const [ballCounts, setBallCounts] = useState(0);
   const [strikesCounts, setStrikesCounts] = useState(0);
 
-  function resetScore() {
-    setBallCounts(0);
-    setStrikesCounts(0);
-  }
-
-  function faul() {
-    if (strikesCounts <= 1) {
-      setStrikesCounts(strikesCounts + 1);
-    }
-  }
+  // const faul = () => {
+  //   if (strikesCounts <= 1) {
+  //     setStrikesCounts(strikesCounts + 1);
+  //   }
+  // };
   return (
     <>
       <Board>
@@ -78,7 +90,9 @@ function Display() {
         <button
           className="dashboard__btn"
           onClick={() =>
-            ballCounts === 4 ? setBallCounts(0) : setBallCounts(ballCounts + 1)
+            ballCounts === 4
+              ? setBallCounts(0)
+              : setBallCounts(addPoints(ballCounts))
           }
         >
           Ball
@@ -88,15 +102,21 @@ function Display() {
           onClick={() =>
             strikesCounts === 3
               ? setStrikesCounts(0)
-              : setStrikesCounts(strikesCounts + 1)
+              : setStrikesCounts(addPoints(strikesCounts))
           }
         >
           Strikes
         </button>
-        <button className="dashboard__btn" onClick={() => faul()}>
+        <button
+          className="dashboard__btn"
+          onClick={() => faul(strikesCounts, setStrikesCounts)}
+        >
           Foul
         </button>
-        <button className="dashboard__btn" onClick={() => resetScore()}>
+        <button
+          className="dashboard__btn"
+          onClick={() => resetScore(setBallCounts(0), setStrikesCounts(0))}
+        >
           Hit
         </button>
       </Buttonontainer>
