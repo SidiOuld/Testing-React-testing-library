@@ -18,3 +18,8 @@ test("App contains a strike button", () => {
   //act
   getByTestId(/strikeBtn/i);
 });
+
+test("App containes score board container", () => {
+  const { getByTestId } = render(<App />);
+  getByTestId(/scoreBoardContainer/i);
+});

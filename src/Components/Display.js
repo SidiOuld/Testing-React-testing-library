@@ -77,7 +77,7 @@ function Display() {
   return (
     <>
       <Board>
-        <div className="scoreBoard ">
+        <div data-testid="scoreBoardContainer" className="scoreBoard ">
           <div className="scoreBoard__title--balls">Balls</div>
           <div className="scoreBoard__score">{ballCounts}</div>
         </div>
